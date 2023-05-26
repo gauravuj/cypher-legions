@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from "../contexts/AuthContext";
 
+/* chat app code */
 function Chatapp() {
   return (
     <div style={{ fontFamily: "Poppins" }}>
