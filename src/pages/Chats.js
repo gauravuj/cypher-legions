@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ChatEngine } from "react-chat-engine";
+import { PrettyChatWindow } from "react-chat-engine-pretty";
+// import { ChatEngine } from "react-chat-engine";
 import { auth } from "../firebase";
+
 import { useAuth } from "../contexts/AuthContext";
+import axios from "axios";
 
 const Chats = () => {
-  const history = useNavigate();
-  const { user } = useAuth();
+  const navigation = useNavigate();
+  const user = useAuth();
   const [loading, setLoading] = useState(true);
 
   const handleLogout = async () => {
     await auth.signOut();
 
-    history("/");
+    navigation("/");
   };
 
   const getFile = async (URL) => {
@@ -25,7 +27,7 @@ const Chats = () => {
 
   useEffect(() => {
     if (!user) {
-      history("/");
+      navigation("/login");
 
       return;
     }
@@ -52,35 +54,30 @@ const Chats = () => {
 
           axios
             .post("https://api.chatengine.io/users/", formdata, {
-              headers: {
-                "private-key": process.env.REACT_APP_CHAT_ENGINE_KEY,
-              },
+              headers: { "private-key": process.env.REACT_APP_CHAT_ENGINE_KEY },
             })
             .then(() => setLoading(false))
             .catch((error) => console.log(error));
         });
       });
-  }, [user, history]);
+  }, [user, navigation]);
 
-  if (!user || loading) return "Loading...";
+  //   if (!user || loading) return "Loading...";
 
   return (
     <div className="chats-page">
       <div className="nav-bar">
-        <div className="logo-tab">
-          CONNECT
-          {/* <img src={Logo} alt="" /> */}
-        </div>
-        <div onClick={handleLogout} className="logout-tab">
+        <div className="logo-tab">connect</div>
+        <div className="logout-tab" onClick={handleLogout}>
           Logout
         </div>
       </div>
 
-      <ChatEngine
-        height="calc(100vh - 66px)"
+      <PrettyChatWindow
         projectID={process.env.REACT_APP_CHAT_ENGINE_ID}
-        userName={user.email}
-        userSecret={user.uid}
+        username={user.email}
+        secret={user.uid}
+        style={{ height: "100vh" }}
       />
     </div>
   );

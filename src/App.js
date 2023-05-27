@@ -4,11 +4,12 @@ import {
   Route,
   Routes as Switch,
 } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
-import Chats from "./components/Chats";
 import "./styles/index.css";
-import Login from "./components/Login";
 import Welcome from "./pages/WelcomePage";
+import Login from "./pages/Login";
+import Chats from "./pages/Chats";
+
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
         <AuthProvider>
           <Switch>
             <Route path="/" element={<Welcome />} />
-            <Route path="/chats" Component={Chats} />
             <Route path="/login" Component={Login} />
+            <Route path="/chats" Component={Chats} />
           </Switch>
         </AuthProvider>
       </Router>

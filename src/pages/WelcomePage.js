@@ -1,8 +1,8 @@
-import About from "./About";
-import Contact from "./Contact";
-import Footer from "./Footer";
-import Home from "./Home";
-import Work from "./Work";
+import About from "../components/About";
+import Contact from "../components/Contact";
+import Footer from "../components/Footer";
+import Home from "../components/Home";
+import Work from "../components/Work";
 import "../styles/Homepage.css";
 import "../styles/bgAnimation.css";
 
