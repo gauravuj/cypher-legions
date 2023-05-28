@@ -1,7 +1,7 @@
 .App {
     height: 100%;
-    max-width: 100%;
-    /* overflow-x: hidden; */
+    /* max-width: 100%; */
+    overflow-x: hidden;
     overflow: visible;
     min-height: 100vh;
     background: radial-gradient(ellipse at bottom, #111820 0%, #121212 100%);
