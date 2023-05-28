@@ -12,12 +12,13 @@ function Welcome() {
       <div className="stars"></div>
       <div className="stars2"></div>
       <div className="stars3"></div>
-
-      <Home />
-      <About />
-      <Work />
-      <Contact />
-      <Footer />
+      <div className="contain">
+        <Home />
+        <About />
+        <Work />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 }

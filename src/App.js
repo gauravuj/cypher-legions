@@ -4,9 +4,12 @@ import {
   Route,
   Routes as Switch,
 } from "react-router-dom";
-import "./styles/index.css";
+
 import Welcome from "./pages/WelcomePage";
 import Login from "./pages/Login";
+// import Login from "./signUpTest/login";
+// import "./signUpTest/login.css";
+import "./styles/index.css";
 import Chats from "./pages/Chats";
 
 import { AuthProvider } from "./contexts/AuthContext";
