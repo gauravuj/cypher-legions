@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import "../styles/index.css";
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ChatEngine } from "react-chat-engine";
@@ -7,8 +7,7 @@ import { ChatEngine } from "react-chat-engine";
 import { useAuth } from "../contexts/AuthContext";
 
 import { auth } from "../firebase";
-
-export default function Chats() {
+const Chats = () => {
   const didMountRef = useRef(false);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
@@ -38,7 +37,7 @@ export default function Chats() {
       axios
         .get("https://api.chatengine.io/users/me/", {
           headers: {
-            "project-id": process.env.REACT_APP_CHAT_ENGINE_ID,
+            "project-id": "5088c9c7-9750-417d-a73b-005a73c56e47",
             "user-name": user.email,
             "user-secret": user.uid,
           },
@@ -58,7 +57,7 @@ export default function Chats() {
             axios
               .post("https://api.chatengine.io/users/", formdata, {
                 headers: {
-                  "private-key": process.env.REACT_APP_CHAT_ENGINE_KEY,
+                  "private-key": "1c2116fc-eb76-4fb8-b5ea-4b531e62aabb",
                 },
               })
               .then(() => setLoading(false))
@@ -83,10 +82,106 @@ export default function Chats() {
 
       <ChatEngine
         height="calc(100vh - 66px)"
-        projectID={process.env.REACT_APP_CHAT_ENGINE_ID}
+        projectID="5088c9c7-9750-417d-a73b-005a73c56e47"
         userName={user.email}
         userSecret={user.uid}
       />
     </div>
   );
-}
+};
+
+export default Chats;
+
+// import React, { useRef, useState, useEffect } from "react";
+// import "../styles/index.css";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+// import { ChatEngine } from "react-chat-engine";
+
+// import { useAuth } from "../contexts/AuthContext";
+
+// import { auth } from "../firebase";
+
+// export default function Chats() {
+//   const didMountRef = useRef(false);
+//   const [loading, setLoading] = useState(true);
+//   const { user } = useAuth();
+//   const history = useNavigate();
+
+//   async function handleLogout() {
+//     await auth.signOut();
+//     history("/");
+//   }
+
+//   async function getFile(url) {
+//     let response = await fetch(url);
+//     let data = await response.blob();
+//     return new File([data], "test.jpg", { type: "image/jpeg" });
+//   }
+
+//   useEffect(() => {
+//     if (!didMountRef.current) {
+//       didMountRef.current = true;
+
+//       if (!user || user === null) {
+//         history("/");
+//         return;
+//       }
+
+//       // Get-or-Create should be in a Firebase Function
+//       axios
+//         .get("https://api.chatengine.io/users/me/", {
+//           headers: {
+//             "project-id": process.env.REACT_APP_CHAT_ENGINE_ID,
+//             "user-name": user.email,
+//             "user-secret": user.uid,
+//           },
+//         })
+
+//         .then(() => setLoading(false))
+
+//         .catch((e) => {
+//           let formdata = new FormData();
+//           formdata.append("email", user.email);
+//           formdata.append("username", user.email);
+//           formdata.append("secret", user.uid);
+
+//           getFile(user.photoURL).then((avatar) => {
+//             formdata.append("avatar", avatar, avatar.name);
+
+//             axios
+//               .post("https://api.chatengine.io/users/", {
+//                 headers: {
+//                   "private-key": process.env.REACT_APP_CHAT_ENGINE_KEY,
+//                 },
+//                 formdata,
+//               })
+//               .then(() => setLoading(false))
+//               .catch((e) => console.log("e", e.response));
+//           });
+//         });
+//       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//     }
+//   }, [user, history]);
+
+//   if (!user || loading) return <div />;
+
+//   return (
+//     <div className="chats-page">
+//       <div className="nav-bar">
+//         <div className="logo-tab">connect</div>
+
+//         <div onClick={handleLogout} className="logout-tab">
+//           Logout
+//         </div>
+//       </div>
+
+//       <ChatEngine
+//         height="calc(100vh - 66px)"
+//         projectID={process.env.REACT_APP_CHAT_ENGINE_ID}
+//         userName={user.email}
+//         userSecret={user.uid}
+//       />
+//     </div>
+//   );
+// }
