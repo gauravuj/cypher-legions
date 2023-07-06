@@ -4,19 +4,23 @@ import Image from "next/image";
 
 const App = () => {
   return (
-    <Card isHoverable variant="bordered" css={{ p: "$7", mw: "600px" , backgroundColor: "white" }}>
+    <Card
+      isHoverable
+      variant="bordered"
+      css={{ p: "$7", mw: "600px", backgroundColor: "white" }}
+    >
       <Card.Header>
         <Image
-         src="/images/events/event1.jpg"
-         width={70}
-         height={70}
-         alt="event1"
-         className="rounded-full"
+          src="/images/events/event1.jpg"
+          width={70}
+          height={70}
+          alt="event1"
+          className="rounded-full"
         />
         <Grid.Container css={{ pl: "$6" }}>
           <Grid xs={12}>
             <Text h4 css={{ lineHeight: "$xs" }}>
-            NIGHT FESTIVAL
+              NIGHT FESTIVAL
             </Text>
           </Grid>
           <Grid xs={12}>
@@ -44,6 +48,6 @@ const App = () => {
       </Card.Footer>
     </Card>
   );
-}
+};
 
 export default App;

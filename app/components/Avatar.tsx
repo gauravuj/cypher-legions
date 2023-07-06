@@ -5,27 +5,24 @@ import Image from "next/image";
 import useActiveList from "../hooks/useActiveList";
 
 interface AvatarProps {
-    user?: User;
+  user?: User;
 }
 
-const Avatar: React.FC<AvatarProps> = ({
-    user
-}) => {
-   
+const Avatar: React.FC<AvatarProps> = ({ user }) => {
   const { members } = useActiveList();
   const isActive = members.indexOf(user?.email!) !== -1;
 
   return (
     <div className="relative">
-        <div className="relative inline-clock rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11">
-            <Image
-               alt="Avatar"
-               src={user?.image || '/images/dashboardImage/pic5.webp'}
-               fill
-             />
-        </div>
-        {isActive && (
-        <span 
+      <div className="relative inline-clock rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11">
+        <Image
+          alt="Avatar"
+          src={user?.image || "/images/dashboardImage/pic5.webp"}
+          fill
+        />
+      </div>
+      {isActive && (
+        <span
           className="
             absolute 
             block 
@@ -39,11 +36,11 @@ const Avatar: React.FC<AvatarProps> = ({
             w-2 
             md:h-3 
             md:w-3
-          " 
+          "
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Avatar
+export default Avatar;
