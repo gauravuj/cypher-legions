@@ -37,6 +37,7 @@ const AuthForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -50,6 +51,7 @@ const AuthForm = () => {
     setIsLoading(true);
 
     if (variant === "REGISTER") {
+      toast.loading("Signing up...", { id: "1" });
       axios
         .post("/api/register", data)
         .then(() =>
@@ -64,25 +66,33 @@ const AuthForm = () => {
           }
 
           if (callback?.ok) {
+            toast.success(<b>Successfully registered!</b>, { id: "1" });
+            reset();
             router.push("/conversations");
           }
         })
-        .catch(() => toast.error("Something went wrong!"))
+        .catch((err) => {
+          toast.error(<b>{err.response.data || "Something went wrong!"}</b>, {
+            id: "1",
+          });
+        })
         .finally(() => setIsLoading(false));
     }
 
     if (variant === "LOGIN") {
+      toast.loading("Signing in...", { id: "1" });
       signIn("credentials", {
         ...data,
         redirect: false,
       })
         .then((callback) => {
           if (callback?.error) {
-            toast.error("Invalid Credentials");
+            toast.error("Invalid Credentials", { id: "1" });
           }
 
           if (callback?.ok && !callback?.error) {
-            toast.success("Successfully logged in!");
+            toast.success("Successfully logged in!", { id: "1" });
+            reset();
             router.push("/conversations");
           }
         })

@@ -1,0 +1,62 @@
+export const questionnaire = {
+  totalquestions: 7,
+  questions: [
+    {
+      id: 1,
+      type: "Age",
+      placeholder: "",
+      question: "How old are you?",
+    },
+    {
+      id: 2,
+      question: "What's your gender?",
+      answers: ["Male", "Female", "Other"],
+    },
+    {
+      id: 3,
+      question: "What's your personality type?",
+      answers: [
+        "INTJ",
+        "INTP",
+        "ENTJ",
+        "ENTP",
+        "INFJ",
+        "INFP",
+        "ENFJ",
+        "ENFP",
+        "ISTJ",
+        "ISFJ",
+        "ESTJ",
+        "ESFJ",
+        "ISTP",
+        "ISFP",
+        "ESTP",
+        "ESFP",
+      ],
+    },
+    {
+      id: 4,
+      question: "What's your ethnicity?",
+      answers: ["White", "Black", "Asian", "Other"],
+    },
+    {
+      id: 5,
+      question: "What's your religion?",
+      answers: ["Christian", "Jewish", "Muslim", "Other"],
+    },
+    {
+      id: 6,
+      question: "How many languages do you speak?",
+      answers: [
+        "English",
+        "Mandarin",
+        "Korean",
+        "Japanese",
+        "French",
+        "German",
+        "Italian",
+        "Other",
+      ],
+    },
+  ],
+};

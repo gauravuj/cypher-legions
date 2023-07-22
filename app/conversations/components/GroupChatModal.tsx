@@ -12,26 +12,21 @@ import Input from "@/app/components/inputs/input";
 import Select from "@/app/components/inputs/Select";
 import Button from "@/app/components/Button";
 
-interface GroupChatModalProps {
-  isOpen?: boolean;
+type Props = {
+  isOpen: boolean;
   onClose: () => void;
   users: User[];
-}
+};
 
-const GroupChatModal: React.FC<GroupChatModalProps> = ({
-  isOpen,
-  onClose,
-  users,
-}) => {
+const GroupChatModal = ({ isOpen, onClose, users }: Props) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
   const {
     register,
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
+    watch,
   } = useForm<FieldValues>({
     defaultValues: {
       name: "",
@@ -41,27 +36,29 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
 
   const members = watch("members");
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const submitHandler: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-
+    toast.loading("Creating group conversation", { id: "1" });
     axios
-      .post("/api/conversations", {
-        ...data,
-        isGroup: true,
-      })
+      .post("/api/conversations", { ...data, isGroup: true })
       .then(() => {
+        toast.success("Success, group conversation created", { id: "1" });
         router.refresh();
         onClose();
       })
-      .catch(() => toast.error("Something went wrong!"))
+      .catch((err) => {
+        toast.error("Error, failed to create group conversation", { id: "1" });
+        console.log(err);
+      })
       .finally(() => setIsLoading(false));
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(submitHandler)}>
         <div className="space-y-12">
-          <div className="border-b border-gray-900/10 pb-12">
+          <div className=" border-b border-gray-900/10 pb-12">
+            <div className="flex items-center gap-2"></div>
             <h2
               className="
                 text-base 
@@ -72,24 +69,25 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
             >
               Create a group chat
             </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
-              Create a chat with more than 2 people.
+            <p className="mt-0.5 text-sm leading-6 text-gray-600">
+              add 2 or more people other than yourself
             </p>
-            <div className="mt-10 flex flex-col gap-y-8">
+
+            <div className="mt-8 flex flex-col gap-y-8">
               <Input
-                disabled={isLoading}
                 label="Group Name"
+                disabled={isLoading}
                 id="name"
                 errors={errors}
                 required
                 register={register}
               />
               <Select
+                label="Other members"
                 disabled={isLoading}
-                label="Members"
                 options={users.map((user) => ({
                   value: user.id,
-                  label: user.name,
+                  label: user.name || "",
                 }))}
                 onChange={(value) =>
                   setValue("members", value, {
@@ -101,7 +99,7 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
             </div>
           </div>
         </div>
-        <div className="mt-6 flex items-center justify-end gap-x-6">
+        <div className="mt-6 flex items-center justify-end gap-x-2">
           <Button
             disabled={isLoading}
             onClick={onClose}

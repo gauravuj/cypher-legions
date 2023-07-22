@@ -9,20 +9,21 @@ interface UserListProps {
 
 const UserList: React.FC<UserListProps> = ({ items }) => {
   return (
-    <aside
+    <div
       className="fixed
                   inset-y-0
                   pb-20
                   lg:pb-0
-                  lg:left-20
-                  lg:w-80
+                  lg:left-1/4
+                  lg:w-96
                   lg:block
                   lg:bg-white/10
                   lg:backdrop-blur-md
-                   lg:m-4
+                  lg:my-6
                   overflow-y-auto
+                  
                   border
-                  border-gray-200
+                  border-[#242627]
                   block
                   w-full
                  
@@ -30,12 +31,12 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
 
                   left-0"
     >
-      <div className="px-5">
+      <div className="px-5 space-y-2">
         <div className="flex-col">
           <div
             className="text-2xl
                                 font-bold
-                                text-neutral-800
+                                text-white
                                 py-4"
           >
             Users
@@ -45,7 +46,7 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
           <UserBox key={item.id} data={item} />
         ))}
       </div>
-    </aside>
+    </div>
   );
 };
 

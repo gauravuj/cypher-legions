@@ -61,7 +61,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
       return lastMessage.body;
     }
 
-    return "Started a conversation";
+    return <p className="text-white">Started a conversation</p>;
   }, [lastMessage]);
 
   return (
@@ -73,12 +73,13 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
                            flex
                            items-center
                            space-x-3
-                           hover:bg-neutral-100
+                          
+                           hover:bg-neutral-900
                            rounded-xl
                            transition
                            cursor-pointer
                            p-4`,
-        selected ? "bg-neutral-100" : "bg-white"
+        selected ? "bg-neutral-900" : "bg-white/10"
       )}
     >
       {data.isGroup ? (
@@ -95,7 +96,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
                                 items-center
                                 mb-1"
           >
-            <p className="text-md font-medium text-gray-800">
+            <p className="text-md font-medium text-gray-100">
               {data.name || otherUser.name}
             </p>
             {lastMessage?.createdAt && (

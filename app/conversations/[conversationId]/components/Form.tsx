@@ -39,13 +39,13 @@ const Form = () => {
   };
 
   return (
-    <div className="py-4 px-4 bg-white border-t flex items-center gap-2 lg:gap-4 w-full">
+    <div className="py-4 px-4 bg-[#242627] border-t border-gray-950 flex items-center gap-2 lg:gap-4 w-full rounded-b-2xl mb-4">
       <CldUploadButton
         options={{ maxFiles: 1 }}
         onUpload={handleUpload}
         uploadPreset="yiowgur6"
       >
-        <Image size={32} color="plain" alt="image" />
+        <Image size={32} color="gray" alt="image" />
       </CldUploadButton>
 
       <form
@@ -64,7 +64,7 @@ const Form = () => {
           className="
                             rounded-full
                             p-2
-                            bg-sky-600
+                            bg-cyan-600
                             cursor-pointer
                             hover:bg-sky-700
                             transition

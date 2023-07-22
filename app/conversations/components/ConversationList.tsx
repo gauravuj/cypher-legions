@@ -102,23 +102,28 @@ const ConversationList: React.FC<ConversationListProps> = ({
                             inset-y-0
                             pb-20
                             lg:pb-0
-                            lg:left-20
-                            lg:w-80
+                            lg:left-1/4
+                            lg:w-96
                             lg:block
+                            lg:rounded-2xl
+                            lg:bg-white/10
+                            lg:backdrop-blur-md
+                            lg:my-6
                             overflow-y-auto
-                            border-r
-                            border-gray-200`,
+                            border
+                            border-gray-800`,
           isOpen ? "hidden" : "block w-full left-0"
         )}
       >
-        <div className="px-5">
+        <div className="px-5 space-y-2">
           <div className="flex justify-between mb-4 pt-4">
-            <div className="text-2xl font-bold text-gray-700">Messages</div>
+            <div className="text-2xl font-bold text-white">Messages</div>
             <div
               onClick={() => setIsModalOpen(true)}
-              className="rounded-full p-2 text-gray-600 cursor-pointer hover:opacity-75 transition"
+              className="rounded-full flex flex-row space-x-1 p-2 text-slate-50 cursor-pointer hover:opacity-75 transition"
             >
               <UserCirclePlus size={25} />
+              <p className="text-md font-semibold">Group</p>
             </div>
           </div>
           {items.map((item) => (

@@ -7,7 +7,7 @@ export default async function UsersLayout({
 }) {
   return (
     <Sidebar>
-      <div className="h-full">{children}</div>
+      <div className="lg:pl-96 h-full">{children}</div>
     </Sidebar>
   );
 }

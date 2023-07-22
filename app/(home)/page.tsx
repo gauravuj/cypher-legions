@@ -1,9 +1,11 @@
-import React from 'react';
+import HomeNavbar from "./components/home-navbar";
 
 const Home = () => {
   return (
-    <div>Home Page</div>
-  )
-}
+    <div className="h-full">
+      <HomeNavbar />
+    </div>
+  );
+};
 
 export default Home;

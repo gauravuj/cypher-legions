@@ -8,6 +8,7 @@ import { User } from "@prisma/client";
 import Avatar from "../Avatar";
 import SettingsModal from "./SettingsModal";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface DesktopSidebarProps {
   currentUser: User;
@@ -32,37 +33,46 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
                     lg:inset-y-0
                     lg:left-1
                     lg:z-40
-                    lg:w-20
-                    xl:px-6
+                    lg:w-{370px}
+                    xl:px-2
                     lg:overflow-y-auto
-                    lg:border-2
-                    lg:rounded-xl
-                    lg:m-3
                     lg:pb-4
                     lg:flex
                     lg:flex-col
-                    justify-between"
+                    justify-between
+                   
+                   "
       >
-        <nav
+        <div
           className="mt-6
-                                      flex
-                                      flex-col
-                                      justify-between
-                                      items-center"
+                     mr-2
+                     p-3
+                     flex
+                     flex-col
+                    justify-between
+                    bg-white/10
+                    rounded-2xl
+                    h-96
+                    w-96
+                    items-center"
         >
           <div
             onClick={() => setIsOpen(true)}
-            className="curson-pointer
-                                                      hover:opacity-75
-                                                      transition
-                                                      "
+            className="curson-pointer hover:opacity-75 transition"
           >
-            <Avatar user={currentUser} />
+            <div className="relative inline-block rounded-full overflow-hidden lg:h-32 lg:w-32 md:h-11 md:w-11">
+              <Image
+                alt="Avatar"
+                src={currentUser?.image || "/images/dashboardImage/pic5.webp"}
+                fill
+              />
+            </div>
           </div>
-        </nav>
+          <p className="text-white font-medium mb-80">{currentUser.name}</p>
+        </div>
 
         <nav
-          className="mt-4
+          className="m-4
                                         flex
                                         flex-col
                                         justify-between"
@@ -70,9 +80,9 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
           <ul
             role="list"
             className="flex
-                                                           flex-col
-                                                           items-center
-                                                           space-y-1"
+                      flex-col
+                      items-start
+                      space-y-1"
           >
             {routes.map((item) => (
               <DesktopItem

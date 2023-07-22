@@ -6,12 +6,13 @@ export default withAuth({
   },
 });
 
-export const config = { 
+export const config = {
   matcher: [
     "/users/:path*",
     "/conversations/:path*",
     "/calendar/:path*",
     "/events/:path*",
     "/arcadegames/:path*",
-  ]
+    "/onboarding/:path*",
+  ],
 };
