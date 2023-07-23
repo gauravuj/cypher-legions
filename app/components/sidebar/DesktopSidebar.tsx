@@ -68,7 +68,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
               />
             </div>
           </div>
-          <p className="text-white font-medium mb-80">{currentUser.name}</p>
+          <p className="text-white font-medium mb-80">{currentUser?.name}</p>
         </div>
 
         <nav
