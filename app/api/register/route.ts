@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { email, name, password, personality } = body;
 
-    if (!email || !name || !password || !personality) {
+    if (!email || !name || !password) {
       return new NextResponse("Missing info", { status: 400 });
     }
 
@@ -19,7 +19,6 @@ export async function POST(request: Request) {
         email,
         name,
         hashedPassword,
-        personality,
       },
     });
 

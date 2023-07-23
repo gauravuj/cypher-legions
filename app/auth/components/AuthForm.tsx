@@ -11,7 +11,7 @@ import { GrGithub } from "react-icons/gr";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Select from "./Select";
+import Select from "react-select";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -113,7 +113,6 @@ const AuthForm = () => {
       name: "",
       email: "",
       password: "",
-      personality: [],
     },
   });
 
@@ -238,11 +237,22 @@ const AuthForm = () => {
               />
 
               {/* <Select
-                label="Personality Type"
-                options={options}
+                isLoading={isLoading}
+                placeholder="Personality Type"
                 value={types}
-                register={register}
-                multi={false}
+                onChange={(value) =>
+                  setValue("personality", value, {
+                    shouldValidate: true,
+                  })
+                }
+                options={options}
+                menuPortalTarget={document.body}
+                styles={{
+                  menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                }}
+                classNames={{
+                  control: () => "text-sm",
+                }}
               /> */}
             </>
           )}
