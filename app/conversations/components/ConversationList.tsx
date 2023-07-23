@@ -123,7 +123,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
               className="rounded-full flex flex-row space-x-1 p-2 text-slate-50 cursor-pointer hover:opacity-75 transition"
             >
               <UserCirclePlus size={25} />
-              <p className="text-md font-semibold">Group</p>
+              <p className="text-md font-normal">Group</p>
             </div>
           </div>
           {items.map((item) => (

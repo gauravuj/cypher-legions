@@ -48,10 +48,13 @@ export default function Login() {
         </div>
         <AuthForm />
         <button
-          className="relative left-[50%] top-[17%] bg-white/10 shadow-lg text-sm text-white hover:bg-green-500 rounded-full px-2 py-2 w-fit"
+          className="fixed left-[47%] top-[95%] bg-white/10 shadow-lg text-sm text-white hover:bg-green-500 rounded-full px-2 py-2 w-fit"
           onClick={() => router.push("/")}
         >
-          <HouseSimple size={20} color="white" alt="homepage" />
+          <div className="flex flex-row text-sm font-semibold space-x-2 px-2">
+            <HouseSimple size={20} color="white" alt="homepage" />
+            <p>Home</p>
+          </div>
         </button>
       </div>
     </>

@@ -11,6 +11,7 @@ import { GrGithub } from "react-icons/gr";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Select from "./Select";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -19,6 +20,72 @@ const AuthForm = () => {
   const router = useRouter();
   const [variant, setVariant] = useState<Variant>("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
+  const options = [
+    {
+      value: "ENTJ",
+      label: "ENTJ",
+    },
+    {
+      value: "ENTP",
+      label: "ENTP",
+    },
+    {
+      value: "ENFJ",
+      label: "ENFJ",
+    },
+    {
+      value: "ESFP",
+      label: "ESFP",
+    },
+    {
+      value: "ESTJ",
+      label: "ESTJ",
+    },
+    {
+      value: "ESFJ",
+      label: "ESFJ",
+    },
+    {
+      value: "ESTP",
+      label: "ESTP",
+    },
+    {
+      value: "ESFP",
+      label: "ESFP",
+    },
+    {
+      value: "INTJ",
+      label: "INTJ",
+    },
+    {
+      value: "INTP",
+      label: "INTP",
+    },
+    {
+      value: "INFJ",
+      label: "INFJ",
+    },
+    {
+      value: "INFP",
+      label: "INFP",
+    },
+    {
+      value: "ISTJ",
+      label: "ISTJ",
+    },
+    {
+      value: "ISFJ",
+      label: "ISFJ",
+    },
+    {
+      value: "ISTP",
+      label: "ISTP",
+    },
+    {
+      value: "ISFP",
+      label: "ISFP",
+    },
+  ];
 
   useEffect(() => {
     if (session?.status === "authenticated") {
@@ -38,12 +105,15 @@ const AuthForm = () => {
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
       name: "",
       email: "",
       password: "",
+      personality: [],
     },
   });
 
@@ -116,6 +186,8 @@ const AuthForm = () => {
       .finally(() => setIsLoading(false));
   };
 
+  const types = watch("personality");
+
   return (
     <div
       className="
@@ -154,15 +226,25 @@ const AuthForm = () => {
         </h2>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           {variant === "REGISTER" && (
-            <Input
-              id="name"
-              label="Full Name"
-              placeholder="Enter your full name"
-              required
-              register={register}
-              errors={errors}
-              disabled={isLoading}
-            />
+            <>
+              <Input
+                id="name"
+                label="Full Name"
+                placeholder="Enter your full name"
+                required
+                register={register}
+                errors={errors}
+                disabled={isLoading}
+              />
+
+              {/* <Select
+                label="Personality Type"
+                options={options}
+                value={types}
+                register={register}
+                multi={false}
+              /> */}
+            </>
           )}
 
           <Input

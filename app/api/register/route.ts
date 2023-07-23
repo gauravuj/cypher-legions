@@ -6,9 +6,9 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, name, password } = body;
+    const { email, name, password, personality } = body;
 
-    if (!email || !name || !password) {
+    if (!email || !name || !password || !personality) {
       return new NextResponse("Missing info", { status: 400 });
     }
 
@@ -19,6 +19,7 @@ export async function POST(request: Request) {
         email,
         name,
         hashedPassword,
+        personality,
       },
     });
 

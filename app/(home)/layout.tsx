@@ -1,11 +1,80 @@
-import React from "react";
+import "./style.css";
+import { Inter } from "next/font/google";
 
-const HomeLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <main className="h-full bg-[#111827] overflow-auto">
-      <div className="mx-auto max-w-screen-xl h-full w-full">{children}</div>
-    </main>
-  );
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Connect",
+  description: "Build Meaningful Connections",
 };
 
-export default HomeLayout;
+const myArray = [
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+  "circle",
+  "x-shape",
+];
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <div className="lines">
+          <div className="line-1">
+            <div className="shapes">
+              {myArray.map((shape, index) => (
+                <div key={index} className={shape}></div>
+              ))}
+            </div>
+          </div>
+          <div className="line-2">
+            <div className="shapes">
+              {myArray.map((shape, index) => (
+                <div key={index} className={shape}></div>
+              ))}
+            </div>
+          </div>
+          <div className="line-3">
+            <div className="shapes">
+              {myArray.map((shape, index) => (
+                <div key={index} className={shape}></div>
+              ))}
+            </div>
+          </div>
+          <div className="line-4">
+            <div className="shapes">
+              {myArray.map((shape, index) => (
+                <div key={index} className={shape}></div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {children}
+      </body>
+    </html>
+  );
+}
